@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { todoItems } from '../todoitems';
+import { TodoItemService } from '../todoitem.service';
 
 @Component({
   selector: 'app-todo-items',
@@ -8,9 +8,15 @@ import { todoItems } from '../todoitems';
   styleUrls: ['./todo-items.component.scss'],
 })
 export class TodoItemsComponent implements OnInit {
-  constructor() {}
+  constructor(private todoItemService: TodoItemService) {}
 
-  items = todoItems;
+  items = [];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.items = this.todoItemService.getItems();
+  }
+
+  addToList(item) {
+    this.todoItemService.addToList(item);
+  }
 }
