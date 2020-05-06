@@ -11,7 +11,7 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:latest AS runtime
 WORKDIR /app
 
 # remove this after ssl is configured
-ENV ASPNETCORE_ENVIRONMENT="Development"
+# ENV ASPNETCORE_ENVIRONMENT="Development"
 
 COPY --from=build /app/TodoApi/output .
 
