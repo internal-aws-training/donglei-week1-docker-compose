@@ -1,3 +1,4 @@
+import { TodoItem } from './../todoItem';
 import { Component, OnInit } from '@angular/core';
 
 import { TodoItemService } from '../todoitem.service';
@@ -10,13 +11,21 @@ import { TodoItemService } from '../todoitem.service';
 export class TodoItemsComponent implements OnInit {
   constructor(private todoItemService: TodoItemService) {}
 
-  items = [];
+  items: TodoItem[];
 
   ngOnInit(): void {
-    this.items = this.todoItemService.getItems();
+    this.getTodoItems();
   }
 
-  addToList(item) {
-    this.todoItemService.addToList(item);
+  getTodoItems(): void {
+    this.todoItemService.getItems().subscribe((items) => (this.items = items));
+  }
+
+  add(item) {
+    this.todoItemService.addTodoItem(item);
+  }
+
+  complete(item) {
+    this.todoItemService.updateTodoItem(item);
   }
 }

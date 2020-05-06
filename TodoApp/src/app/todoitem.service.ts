@@ -23,16 +23,24 @@ export class TodoItemService {
     return this.http.get<TodoItem[]>(this.todoItemsUrl);
   }
 
-  /** POST: add a new hero to the server */
+  /** POST: add a new todo item to the server */
   addTodoItem(item: TodoItem): Observable<TodoItem> {
     return this.http
       .post<TodoItem>(this.todoItemsUrl, item, this.httpOptions)
       .pipe(
         tap((newItem: TodoItem) =>
-          console.log(`added hero w/ id=${newItem.id}`)
+          console.log(`added item w/ id=${newItem.id}`)
         ),
         catchError(this.handleError<TodoItem>('addTodoItem'))
       );
+  }
+
+  /** PUT: update the item on the server */
+  updateTodoItem(item: TodoItem): Observable<any> {
+    return this.http.put(this.todoItemsUrl, item, this.httpOptions).pipe(
+      tap((_) => console.log(`updated item id=${item.id}`)),
+      catchError(this.handleError<any>('updateTodoItem'))
+    );
   }
 
   /**
