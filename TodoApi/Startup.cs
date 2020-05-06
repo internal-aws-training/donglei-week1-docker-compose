@@ -20,6 +20,12 @@ namespace TodoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(o => o.AddPolicy("AllowCorsPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
             services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
 
             services.AddControllers();
@@ -32,6 +38,9 @@ namespace TodoApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Enable Cors
+            app.UseCors("AllowCorsPolicy");
 
             app.UseRouting();
 
