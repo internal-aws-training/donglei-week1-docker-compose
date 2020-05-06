@@ -11,7 +11,7 @@ import { environment } from './../environments/environment';
   providedIn: 'root',
 })
 export class TodoItemService {
-  private todoItemsUrl = environment.apiUrl + 'api/todoitems'; // URL to web api
+  private todoItemsUrl = environment.apiUrl + '/api/todoitems'; // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
