@@ -26,7 +26,9 @@ namespace TodoApi
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));
-            services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
+
+            var connStr = Configuration.GetConnectionString("postgres");
+            services.AddDbContext<TodoContext>(opt => opt.UseNpgsql(connStr));
 
             services.AddControllers();
         }
