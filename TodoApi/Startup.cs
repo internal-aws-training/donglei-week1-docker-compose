@@ -44,6 +44,8 @@ namespace TodoApi
             // Enable Cors
             app.UseCors("AllowCorsPolicy");
 
+            app.EnsureDatabase();
+
             app.UseRouting();
 
             if (env.IsProduction())
