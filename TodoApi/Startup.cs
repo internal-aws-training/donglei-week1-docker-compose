@@ -48,11 +48,11 @@ namespace TodoApi
 
             app.UseRouting();
 
-            if (env.IsProduction())
-            {
-                app.UseHttpsRedirection();
-                app.UseAuthorization();
-            }
+            //if (env.IsProduction())
+            //{
+            //    app.UseHttpsRedirection();
+            //    app.UseAuthorization();
+            //}
 
             app.UseEndpoints(endpoints =>
             {
