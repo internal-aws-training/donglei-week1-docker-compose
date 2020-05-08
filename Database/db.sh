@@ -6,4 +6,4 @@ docker run \
   -e POSTGRES_USER=sa \
   -e POSTGRES_PASSWORD=passW0rd \
   -v postgresql:/var/lib/postgresql/data \
-  postgres
+  postgres:12.2-alpin
