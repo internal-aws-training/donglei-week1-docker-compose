@@ -6,12 +6,18 @@ services:
       - "5000:80"
     depends_on:
       - database
+    networks:
+      - front-end
+      - back-end
+
   app:
     build: TodoApp
     ports:
       - "4200:80"
     depends_on:
       - api
+    networks:
+      - front-end
 
   database:
     image: postgres:12.2-alpine
@@ -22,5 +28,12 @@ services:
     environment:
       POSTGRES_USER: sa
       POSTGRES_PASSWORD: passW0rd
+    networks:
+      - back-end
+
 volumes:
   postgresql:
+
+networks:
+  front-end:
+  back-end:
